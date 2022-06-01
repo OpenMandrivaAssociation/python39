@@ -41,7 +41,7 @@
 %bcond_with pip
 
 Summary:	An interpreted, interactive object-oriented programming language
-Name:		python
+Name:		python39
 Version:	3.9.13
 %if "%{pre}" != ""
 Release:	0.%{pre}.1
@@ -194,7 +194,7 @@ in ASCII text files and in LaTeX source files.
 Install the python-docs package if you'd like to use the documentation
 for the Python language.
 
-%package -n tkinter
+%package tkinter
 Summary:	A graphical user interface for the Python scripting language
 Group:		Development/Python
 Requires:	%{name} = %{EVRD}
@@ -202,20 +202,20 @@ Requires:	tcl
 Requires:	tk
 Obsoletes:	tkinter3 < %{EVRD}
 
-%description -n tkinter
+%description tkinter
 The Tkinter (Tk interface) program is an graphical user interface for
 the Python scripting language.
 
 You should install the tkinter package if you'd like to use a graphical
 user interface for Python programming.
 
-%package -n tkinter-apps
+%package tkinter-apps
 Summary:	Various applications written using tkinter
 Group:		Development/Python
 Requires:	tkinter = %{EVRD}
 Obsoletes:	tkinter3-apps < %{EVRD}
 
-%description -n tkinter-apps
+%description tkinter-apps
 Various applications written using tkinter.
 
 %package test
@@ -254,12 +254,12 @@ python package will also need to be installed.  You'll probably also
 want to install the python-docs package, which contains Python
 documentation.
 
-%package -n python32-libs
+%package python32-libs
 Summary:	Libraries for use with the 32-bit python interpreter
 Group:		Development/Python
 Requires:	%{lib32name} = %{EVRD}
 
-%description -n python32-libs
+%description python32-libs
 Libraries for use with the 32-bit python interpreter
 %endif
 
