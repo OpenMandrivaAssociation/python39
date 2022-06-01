@@ -619,9 +619,7 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 %{_libdir}/libpython*.so
 %{_includedir}/python*
 %{_libdir}/python*/config-%{dirver}*
-%{_bindir}/python-config
 %{_bindir}/python%{dirver}*-config
-%{_bindir}/python%{familyver}-config
 %{_libdir}/pkgconfig/python*.pc
 %exclude %{_includedir}/python*/pyconfig.h
 %if %{with compat32}
