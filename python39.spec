@@ -21,9 +21,9 @@
 %define api %{dirver}
 %define major 1
 %define libname %mklibname python %{api} %{major}
-%define devname %mklibname python -d
+%define devname %mklibname python39 -d
 %define lib32name %mklib32name python %{api} %{major}
-%define dev32name %mklib32name python -d
+%define dev32name %mklib32name python39 -d
 
 %define pre %{nil}
 
@@ -212,7 +212,7 @@ user interface for Python programming.
 %package tkinter-apps
 Summary:	Various applications written using tkinter
 Group:		Development/Python
-Requires:	tkinter = %{EVRD}
+Requires:	%{name}-tkinter = %{EVRD}
 Obsoletes:	tkinter3-apps < %{EVRD}
 
 %description tkinter-apps
@@ -518,7 +518,7 @@ find html -type f |xargs chmod 0644
 
 # remove  stuff provided by system python 3
 rm -f %{buildroot}%{_bindir}/{2to3,pydoc3,python3,pyvenv,pip3,python3-config}
-rm -f %{buildroot}%{_libdir}/pkgconfig/python3.pc
+rm -f %{buildroot}%{_libdir}/pkgconfig/python3.pc %{buildroot}%{_libdir}/pkgconfig/python3-embed.pc
 rm -f %{buildroot}%{_mandir}/man1/python3.1*
 rm -f %{buildroot}%{_libdir}/libpython3.so
 
