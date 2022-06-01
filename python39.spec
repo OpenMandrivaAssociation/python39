@@ -635,7 +635,7 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 %{_datadir}/applications/mandriva-%{name}-docs.desktop
 %{_mandir}/man*/*
 
-%files -n tkinter
+%files tkinter
 %{_libdir}/python*/tkinter/
 %exclude %{_libdir}/python%{dirver}/tkinter/test
 %{_libdir}/python%{dirver}/turtledemo
@@ -643,7 +643,7 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 %{_libdir}/python*/site-packages/pynche
 %{_libdir}/python*/lib-dynload/_tkinter.*.so
 
-%files -n tkinter-apps
+%files tkinter-apps
 %{_bindir}/idle3*
 %{_bindir}/pynche
 %{_datadir}/applications/mandriva-tkinter3.desktop
@@ -670,7 +670,7 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 %{_prefix}/lib/libpython*.so
 %{_prefix}/lib/pkgconfig/python*.pc
 
-%files -n python32-libs
+%files python32-libs
 %{_prefix}/lib/python%{dirver}/lib-dynload
 %dir %{_prefix}/lib/python%{dirver}
 %{_prefix}/lib/python%{dirver}/LICENSE.txt
