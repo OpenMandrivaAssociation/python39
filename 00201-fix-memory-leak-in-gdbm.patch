@@ -1,0 +1,11 @@
+diff -up Python-3.9.0/Modules/_gdbmmodule.c.17~ Python-3.9.0/Modules/_gdbmmodule.c
+--- Python-3.9.0/Modules/_gdbmmodule.c.17~	2020-10-18 20:11:06.336018040 +0200
++++ Python-3.9.0/Modules/_gdbmmodule.c	2020-10-18 20:11:45.349441470 +0200
+@@ -133,6 +133,7 @@ dbm_length(dbmobject *dp)
+             }
+             okey=key;
+         }
++	if(okey.dsize) free(okey.dptr);
+         dp->di_size = size;
+ #endif
+     }

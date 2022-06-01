@@ -1,0 +1,12 @@
+%__python39 /usr/bin/python3.9
+%python39_sitelib %(%{__python39} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
+%python39_sitearch %(%{__python39} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")
+%py39ver %(%{__python3} -V 2>&1 | cut -f2 -d" " | cut -f1,2 -d".")
+%python39_version %(%{__python39} -c "import sys; print(sys.version[0:3])")
+%python39_version_nodots %(%{__python39} -c "import sys; sys.stdout.write(sys.version[:3].replace('.',''))")
+%py39_ver %(%{__python39} -c "import sys; v=sys.version_info[:2]; print('%%d.%%d'%%v)" 2>/dev/null || echo PYTHON-NOT-FOUND)
+%py39_prefix %(%{__python39} -c "import sys; print(sys.prefix)" 2>/dev/null || echo PYTHON-NOT-FOUND)
+%py39_platsitedir %python39_sitearch
+%py39_puresitedir %python39_sitelib
+%py39_incdir %(%{__python39} -c 'from distutils.sysconfig import get_python_inc; print(get_python_inc())' 2>/dev/null || echo PYTHON-INCLUDEDIR-NOT-FOUND)
+%py39dir %{_builddir}/python39-%{name}-%{version}-%{release}

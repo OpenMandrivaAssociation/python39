@@ -1,0 +1,81 @@
+diff -up Python-3.9.0/Include/internal/pycore_atomic.h.13~ Python-3.9.0/Include/internal/pycore_atomic.h
+--- Python-3.9.0/Include/internal/pycore_atomic.h.13~	2020-10-05 17:07:58.000000000 +0200
++++ Python-3.9.0/Include/internal/pycore_atomic.h	2020-10-18 20:08:36.413390817 +0200
+@@ -1,5 +1,18 @@
+ #ifndef Py_ATOMIC_H
+ #define Py_ATOMIC_H
++
++#if defined(__cplusplus) && !defined(NO_CXX_ATOMICS)
++#include <atomic>
++typedef std::atomic<uintptr_t> atomic_uintptr_t;
++typedef std::atomic<int> atomic_int;
++#define memory_order_relaxed std::memory_order_relaxed
++#define memory_order_acquire std::memory_order_acquire
++#define memory_order_release std::memory_order_release
++#define memory_order_acq_rel std::memory_order_acq_rel
++#define memory_order_seq_cst std::memory_order_seq_cst
++#define CXX_ATOMICS 1
++#endif
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -11,7 +24,7 @@ extern "C" {
+ #include "dynamic_annotations.h"   /* _Py_ANNOTATE_MEMORY_ORDER */
+ #include "pyconfig.h"
+ 
+-#if defined(HAVE_STD_ATOMIC)
++#if defined(HAVE_STD_ATOMIC) && !defined(CXX_ATOMICS)
+ #include <stdatomic.h>
+ #endif
+ 
+diff -up Python-3.9.0/Include/internal/pycore_gil.h.13~ Python-3.9.0/Include/internal/pycore_gil.h
+--- Python-3.9.0/Include/internal/pycore_gil.h.13~	2020-10-05 17:07:58.000000000 +0200
++++ Python-3.9.0/Include/internal/pycore_gil.h	2020-10-18 20:09:01.177659608 +0200
+@@ -1,5 +1,8 @@
+ #ifndef Py_INTERNAL_GIL_H
+ #define Py_INTERNAL_GIL_H
++
++#include "pycore_atomic.h" /* Intentionally not in extern C */
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -8,7 +11,6 @@ extern "C" {
+ #  error "this header requires Py_BUILD_CORE define"
+ #endif
+ 
+-#include "pycore_atomic.h"    /* _Py_atomic_address */
+ #include "pycore_condvar.h"   /* PyCOND_T */
+ 
+ #ifndef Py_HAVE_CONDVAR
+diff -up Python-3.9.0/Include/internal/pycore_initconfig.h.13~ Python-3.9.0/Include/internal/pycore_initconfig.h
+--- Python-3.9.0/Include/internal/pycore_initconfig.h.13~	2020-10-05 17:07:58.000000000 +0200
++++ Python-3.9.0/Include/internal/pycore_initconfig.h	2020-10-18 20:09:17.156833044 +0200
+@@ -1,5 +1,6 @@
+ #ifndef Py_INTERNAL_CORECONFIG_H
+ #define Py_INTERNAL_CORECONFIG_H
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+diff -up Python-3.9.0/Include/internal/pycore_pylifecycle.h.13~ Python-3.9.0/Include/internal/pycore_pylifecycle.h
+--- Python-3.9.0/Include/internal/pycore_pylifecycle.h.13~	2020-10-05 17:07:58.000000000 +0200
++++ Python-3.9.0/Include/internal/pycore_pylifecycle.h	2020-10-18 20:09:32.347997926 +0200
+@@ -1,5 +1,6 @@
+ #ifndef Py_INTERNAL_LIFECYCLE_H
+ #define Py_INTERNAL_LIFECYCLE_H
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+diff -up Python-3.9.0/Include/internal/pycore_pystate.h.13~ Python-3.9.0/Include/internal/pycore_pystate.h
+--- Python-3.9.0/Include/internal/pycore_pystate.h.13~	2020-10-05 17:07:58.000000000 +0200
++++ Python-3.9.0/Include/internal/pycore_pystate.h	2020-10-18 20:09:45.317138691 +0200
+@@ -1,5 +1,6 @@
+ #ifndef Py_INTERNAL_PYSTATE_H
+ #define Py_INTERNAL_PYSTATE_H
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
