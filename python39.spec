@@ -42,7 +42,7 @@
 
 Summary:	An interpreted, interactive object-oriented programming language
 Name:		python39
-Version:	3.9.13
+Version:	3.9.19
 %if "%{pre}" != ""
 Release:	0.%{pre}.1
 %else
@@ -95,7 +95,7 @@ BuildRequires:	pkgconfig(tcl)
 BuildRequires:	pkgconfig(tk)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(uuid)
-BuildRequires:	python2
+#BuildRequires:	python2
 %if %{with valgrind}
 BuildRequires:	valgrind-devel
 %endif
@@ -105,6 +105,7 @@ BuildRequires:	clang
 %endif
 Obsoletes:	python3 < %{EVRD}
 Provides:	python3 = %{EVRD}
+Provides:	python3.9 = %{EVRD}
 Provides:	python(abi) = %{dirver}
 Provides:	/usr/bin/python%{dirver}mu
 Conflicts:	tkinter3 < %{EVRD}
