@@ -50,7 +50,7 @@ Release:	2
 %endif
 License:	Modified CNRI Open Source License
 Group:		Development/Python
-Url:		http://www.python.org/
+Url:		https://www.python.org/
 Source0:	http://www.python.org/ftp/python/%{version}/Python-%{version}%{pre}.tar.xz
 Source1:	http://www.python.org/ftp/python/doc/%{docver}/python-%{docver}-docs-html.tar.bz2
 Source2:	python3.9.macros
